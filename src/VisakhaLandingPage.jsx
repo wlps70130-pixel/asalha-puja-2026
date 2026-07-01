@@ -65,6 +65,48 @@ const DEFAULT_SETTINGS = {
   หัวข้อก่อนตาราง: "รายชื่อเจ้าภาพและผู้ร่วมทำบุญ",
   พุทธพจน์: "ธรรมะย่อมรักษาผู้ประพฤติธรรม",
   quote: "ร่วมบุญด้วยศรัทธา สืบสานพระธรรมในวันอาสาฬหบูชา",
+  ชื่อวัดไทย: "วัดหลวงพ่อสดธรรมกายาราม",
+  ชื่อวัดอังกฤษ: "Wat Luang Pho Sod Dhammakayaram",
+  เมนูหน้าแรก: "หน้าแรก",
+  เมนูรายชื่อ: "รายชื่อ",
+  เมนูทำบุญ: "ทำบุญ",
+  เมนูกำหนดการ: "กำหนดการ",
+  เมนูติดต่อ: "ติดต่อ",
+  ปุ่มร่วมทำบุญ: "ร่วมทำบุญ",
+  ปุ่มดูรายชื่อ: "ดูรายชื่อผู้ร่วมบุญ",
+  ป้ายแนวคิดของงาน: "แนวคิดของงาน",
+  ป้ายอัปเดตล่าสุด: "อัปเดตล่าสุด",
+  หัวข้อย่อยรายชื่อ: "รายชื่อผู้ร่วมบุญ",
+  ช่องค้นหารายชื่อ: "ค้นหาลำดับ ประเภท ชื่อ หรือจำนวนทำบุญ",
+  ป้ายจำนวนรายการ: "รายการ",
+  หัวตารางลำดับ: "ลำดับ",
+  หัวตารางประเภท: "ประเภท",
+  หัวตารางชื่อคณะ: "ชื่อ / คณะ",
+  หัวตารางจำนวนทำบุญ: "จำนวนทำบุญ",
+  ข้อความกำลังโหลดรายชื่อ: "กำลังโหลดข้อมูลจาก Google Sheet",
+  ข้อความไม่มีรายชื่อ: "ยังไม่มีข้อมูลรายชื่อใน Sheet หรือไม่พบผลลัพธ์ที่ค้นหา",
+  หัวข้อย่อยวัตถุประสงค์: "วัตถุประสงค์",
+  หัวข้อย่อยร่วมทำบุญ: "ร่วมทำบุญ",
+  คำอธิบายร่วมทำบุญ: "สามารถร่วมบุญผ่านบัญชีวัด และส่งหลักฐานการโอนทาง Line OA",
+  ป้ายQRCode: "QR Code ทำบุญ",
+  คำแนะนำQRCode: "เพิ่มลิงก์รูปใน Sheet ที่ key “ลิงก์ QR ทำบุญ”",
+  ป้ายชื่อบัญชี: "ชื่อบัญชี",
+  ปุ่มส่งหลักฐาน: "ส่งหลักฐานทาง Line OA",
+  หัวข้อย่อยกำหนดการ: "กำหนดการ",
+  หัวข้อกำหนดการ: "ลำดับพิธีและกิจกรรม",
+  คำอธิบายกำหนดการ: "",
+  หัวข้อย่อยกิจกรรม: "กิจกรรมภายในงาน",
+  หัวข้อกิจกรรม: "กิจกรรมภายในงาน",
+  หัวข้อย่อยติดต่อ: "ติดต่อสอบถาม",
+  หัวข้อติดต่อ: "วัดหลวงพ่อสดธรรมกายาราม",
+  คำอธิบายติดต่อ: "Wat Luang Pho Sod Dhammakayaram",
+  ป้ายLineOA: "Line OA",
+  ปุ่มเปิดแผนที่: "เปิดแผนที่",
+  ป้ายพุทธพจน์: "พุทธพจน์",
+  ป้ายณ: "ณ",
+  ข้อความโหลดSheetไม่สำเร็จ: "โหลดข้อมูลจาก Google Sheet ไม่สำเร็จ",
+  ข้อความโหลดข้อมูลไม่สำเร็จ: "โหลดข้อมูลไม่สำเร็จ",
+  ข้อความAltโลโก้วัด: "โลโก้วัด",
 };
 
 const FALLBACK_SCHEDULE = [
@@ -116,12 +158,12 @@ const iconMap = {
   Wifi,
 };
 
-const navItems = [
-  ["home", "หน้าแรก", Home],
-  ["donors", "รายชื่อ", UserRound],
-  ["donate", "ทำบุญ", Banknote],
-  ["schedule", "กำหนดการ", Clock],
-  ["contact", "ติดต่อ", MessageCircle],
+const navConfig = [
+  ["home", "เมนูหน้าแรก", Home],
+  ["donors", "เมนูรายชื่อ", UserRound],
+  ["donate", "เมนูทำบุญ", Banknote],
+  ["schedule", "เมนูกำหนดการ", Clock],
+  ["contact", "เมนูติดต่อ", MessageCircle],
 ];
 
 function parseCsv(text) {
@@ -253,7 +295,7 @@ export default function VisakhaLandingPage() {
       try {
         const response = await fetch(`${SHEET_URL}&_=${Date.now()}`, { cache: "no-store" });
         const text = await response.text();
-        if (!response.ok) throw new Error("โหลดข้อมูลจาก Google Sheet ไม่สำเร็จ");
+        if (!response.ok) throw new Error(DEFAULT_SETTINGS["ข้อความโหลดSheetไม่สำเร็จ"]);
         const parsedRows = parseCsv(text);
         if (mounted) {
           setSheet(normalizeSheet(parsedRows));
@@ -261,7 +303,7 @@ export default function VisakhaLandingPage() {
         }
       } catch (loadError) {
         if (mounted) {
-          setError(loadError instanceof Error ? loadError.message : "โหลดข้อมูลไม่สำเร็จ");
+          setError(loadError instanceof Error ? loadError.message : DEFAULT_SETTINGS["ข้อความโหลดข้อมูลไม่สำเร็จ"]);
           setStatus("error");
         }
       }
@@ -276,8 +318,12 @@ export default function VisakhaLandingPage() {
   const settings = {
     ...DEFAULT_SETTINGS,
     ...sheet.settings,
-    ชื่อกิจกรรมหลัก: "วันอาสาฬหบูชา",
   };
+  const navItems = navConfig.map(([id, labelKey, Icon]) => [
+    id,
+    settings[labelKey],
+    Icon,
+  ]);
   const donors = sheet.donors;
   const schedule = sheet.schedule.length ? sheet.schedule : FALLBACK_SCHEDULE;
   const activities = sheet.activities.length ? sheet.activities : FALLBACK_ACTIVITIES;
@@ -303,15 +349,15 @@ export default function VisakhaLandingPage() {
         <div className="section-shell flex h-20 items-center justify-between">
           <a href="#home" className="flex items-center gap-3">
             {logoImage ? (
-              <img src={logoImage} alt="โลโก้วัด" className="h-12 w-12 rounded-full object-cover" />
+              <img src={logoImage} alt={settings["ข้อความAltโลโก้วัด"]} className="h-12 w-12 rounded-full object-cover" />
             ) : (
               <span className="grid h-12 w-12 place-items-center rounded-full bg-temple-emerald text-white">
                 <Landmark className="h-6 w-6" />
               </span>
             )}
             <span>
-              <span className="block text-sm font-bold text-temple-emerald">วัดหลวงพ่อสดธรรมกายาราม</span>
-              <span className="block text-xs text-temple-muted">Wat Luang Pho Sod Dhammakayaram</span>
+              <span className="block text-sm font-bold text-temple-emerald">{settings["ชื่อวัดไทย"]}</span>
+              <span className="block text-xs text-temple-muted">{settings["ชื่อวัดอังกฤษ"]}</span>
             </span>
           </a>
           <nav className="flex items-center gap-1">
@@ -333,7 +379,7 @@ export default function VisakhaLandingPage() {
                 {settings["งานบุญประจำปี"]}
               </div>
               <h1 className="mt-6 text-5xl font-black leading-tight tracking-tight text-temple-emerald md:text-7xl">
-                {settings["ชื่อกิจกรรมหลัก"] || "วันอาสาฬหบูชา"}
+                {settings["ชื่อกิจกรรมหลัก"]}
               </h1>
               <p className="mt-4 text-2xl font-bold text-temple-gold md:text-3xl">
                 {settings["ชื่อกิจกรรมรอง"]}
@@ -355,10 +401,10 @@ export default function VisakhaLandingPage() {
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href="#donate" className="inline-flex items-center gap-2 rounded-full bg-temple-emerald px-6 py-3 font-bold text-white shadow-temple transition hover:bg-temple-emeraldSoft">
-                  ร่วมทำบุญ <ChevronRight className="h-4 w-4" />
+                  {settings["ปุ่มร่วมทำบุญ"]} <ChevronRight className="h-4 w-4" />
                 </a>
                 <a href="#donors" className="inline-flex items-center gap-2 rounded-full border border-temple-gold bg-white/70 px-6 py-3 font-bold text-temple-emerald transition hover:bg-white">
-                  ดูรายชื่อผู้ร่วมบุญ
+                  {settings["ปุ่มดูรายชื่อ"]}
                 </a>
               </div>
             </div>
@@ -370,11 +416,11 @@ export default function VisakhaLandingPage() {
                 </div>
                 <div className="grid gap-3 p-4 sm:grid-cols-2">
                   <div>
-                    <p className="text-xs font-bold text-temple-gold">แนวคิดของงาน</p>
+                    <p className="text-xs font-bold text-temple-gold">{settings["ป้ายแนวคิดของงาน"]}</p>
                     <p className="mt-1 text-sm leading-6 text-temple-muted">{settings["แนวคิดของงาน"]}</p>
                   </div>
                   <div className="rounded-2xl bg-temple-emerald px-4 py-3 text-white">
-                    <p className="text-xs text-white/70">อัปเดตล่าสุด</p>
+                    <p className="text-xs text-white/70">{settings["ป้ายอัปเดตล่าสุด"]}</p>
                     <p className="mt-1 text-sm font-bold">{formatUpdatedAt(updatedAt)}</p>
                   </div>
                 </div>
@@ -387,7 +433,7 @@ export default function VisakhaLandingPage() {
           <div className="section-shell">
             <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
               <SectionHeading
-                eyebrow="รายชื่อผู้ร่วมบุญ"
+                eyebrow={settings["หัวข้อย่อยรายชื่อ"]}
                 title={settings["หัวข้อก่อนตาราง"]}
               />
               <div className="glass-panel rounded-3xl p-4 md:p-6">
@@ -397,12 +443,12 @@ export default function VisakhaLandingPage() {
                     <input
                       value={query}
                       onChange={(event) => setQuery(event.target.value)}
-                      placeholder="ค้นหาลำดับ ประเภท ชื่อ หรือจำนวนทำบุญ"
+                      placeholder={settings["ช่องค้นหารายชื่อ"]}
                       className="w-full rounded-2xl border border-temple-goldSoft bg-white px-11 py-3 outline-none ring-temple-gold/20 focus:ring-4"
                     />
                   </div>
                   <span className="rounded-full bg-temple-cream px-4 py-2 text-sm font-bold text-temple-emerald">
-                    {filteredDonors.length} รายการ
+                    {filteredDonors.length} {settings["ป้ายจำนวนรายการ"]}
                   </span>
                 </div>
 
@@ -411,10 +457,10 @@ export default function VisakhaLandingPage() {
                     <table className="min-w-full text-left text-sm">
                       <thead className="sticky top-0 bg-temple-emerald text-white">
                         <tr>
-                          <th className="px-4 py-3">ลำดับ</th>
-                          <th className="px-4 py-3">ประเภท</th>
-                          <th className="px-4 py-3">ชื่อ / คณะ</th>
-                          <th className="px-4 py-3 text-right">จำนวนทำบุญ</th>
+                          <th className="px-4 py-3">{settings["หัวตารางลำดับ"]}</th>
+                          <th className="px-4 py-3">{settings["หัวตารางประเภท"]}</th>
+                          <th className="px-4 py-3">{settings["หัวตารางชื่อคณะ"]}</th>
+                          <th className="px-4 py-3 text-right">{settings["หัวตารางจำนวนทำบุญ"]}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-temple-goldSoft/70">
@@ -422,7 +468,7 @@ export default function VisakhaLandingPage() {
                           <tr>
                             <td colSpan="4" className="px-4 py-10 text-center text-temple-muted">
                               <Loader2 className="mx-auto mb-3 h-6 w-6 animate-spin" />
-                              กำลังโหลดข้อมูลจาก Google Sheet
+                              {settings["ข้อความกำลังโหลดรายชื่อ"]}
                             </td>
                           </tr>
                         ) : filteredDonors.length ? (
@@ -437,7 +483,7 @@ export default function VisakhaLandingPage() {
                         ) : (
                           <tr>
                             <td colSpan="4" className="px-4 py-10 text-center text-temple-muted">
-                              {error || "ยังไม่มีข้อมูลรายชื่อใน Sheet หรือไม่พบผลลัพธ์ที่ค้นหา"}
+                              {error || settings["ข้อความไม่มีรายชื่อ"]}
                             </td>
                           </tr>
                         )}
@@ -453,7 +499,7 @@ export default function VisakhaLandingPage() {
         <section id="objectives" className="bg-white/70 py-20">
           <div className="section-shell">
             <SectionHeading
-              eyebrow="วัตถุประสงค์"
+              eyebrow={settings["หัวข้อย่อยวัตถุประสงค์"]}
               title={settings["หัวข้อวัตถุประสงค์"]}
               description={settings["คำอธิบายวัตถุประสงค์"] || settings["เนื้อหาวัตถุประสงค์"]}
             />
@@ -482,9 +528,9 @@ export default function VisakhaLandingPage() {
             <div>
               <SectionHeading
                 light
-                eyebrow="ร่วมทำบุญ"
+                eyebrow={settings["หัวข้อย่อยร่วมทำบุญ"]}
                 title={settings["หัวข้อร่วมทำบุญ"]}
-                description="สามารถร่วมบุญผ่านบัญชีวัด และส่งหลักฐานการโอนทาง Line OA"
+                description={settings["คำอธิบายร่วมทำบุญ"]}
               />
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {benefits.map(([title, detailOrIcon], index) => {
@@ -503,22 +549,22 @@ export default function VisakhaLandingPage() {
             <aside className="rounded-3xl bg-white p-5 text-temple-ink shadow-temple">
               <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-temple-cream">
                 {qrImage ? (
-                  <img src={qrImage} alt="QR Code ทำบุญ" className="h-full w-full object-cover" />
+                  <img src={qrImage} alt={settings["ป้ายQRCode"]} className="h-full w-full object-cover" />
                 ) : (
                   <div className="flex h-full flex-col items-center justify-center p-8 text-center text-temple-muted">
                     <Banknote className="mb-4 h-12 w-12 text-temple-gold" />
-                    <p className="font-bold">QR Code ทำบุญ</p>
-                    <p className="mt-2 text-sm leading-6">เพิ่มลิงก์รูปใน Sheet ที่ key “ลิงก์ QR ทำบุญ”</p>
+                    <p className="font-bold">{settings["ป้ายQRCode"]}</p>
+                    <p className="mt-2 text-sm leading-6">{settings["คำแนะนำQRCode"]}</p>
                   </div>
                 )}
               </div>
               <div className="mt-5 rounded-2xl bg-temple-cream p-5">
                 <p className="text-sm font-bold text-temple-gold">{settings["ธนาคาร"]}</p>
                 <p className="mt-2 text-3xl font-black text-temple-emerald">{settings["เลขบัญชี"]}</p>
-                <p className="mt-2 text-temple-muted">ชื่อบัญชี {settings["ชื่อบัญชี"]}</p>
+                <p className="mt-2 text-temple-muted">{settings["ป้ายชื่อบัญชี"]} {settings["ชื่อบัญชี"]}</p>
               </div>
               <a href={`https://line.me/R/ti/p/${encodeURIComponent(settings["Line ID"])}`} className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-temple-emerald px-5 py-3 font-bold text-white">
-                ส่งหลักฐานทาง Line OA {settings["Line ID"]}
+                {settings["ปุ่มส่งหลักฐาน"]} {settings["Line ID"]}
               </a>
             </aside>
           </div>
@@ -528,9 +574,9 @@ export default function VisakhaLandingPage() {
           <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <div className="lg:sticky lg:top-28">
               <SectionHeading
-                eyebrow="กำหนดการ"
-                title="ลำดับพิธีและกิจกรรม"
-                description={`${settings["วันที่จัดงาน"]} ${settings["เวลาเริ่มงาน"]} ณ ${settings["สถานที่จัดงาน"]}`}
+                eyebrow={settings["หัวข้อย่อยกำหนดการ"]}
+                title={settings["หัวข้อกำหนดการ"]}
+                description={settings["คำอธิบายกำหนดการ"] || `${settings["วันที่จัดงาน"]} ${settings["เวลาเริ่มงาน"]} ${settings["ป้ายณ"]} ${settings["สถานที่จัดงาน"]}`}
               />
             </div>
             <div className="rounded-3xl border border-temple-goldSoft bg-white p-4 shadow-temple md:p-6">
@@ -549,8 +595,8 @@ export default function VisakhaLandingPage() {
         <section id="activities" className="bg-white/70 py-20">
           <div className="section-shell">
             <SectionHeading
-              eyebrow="กิจกรรมภายในงาน"
-              title="กิจกรรมภายในงาน"
+              eyebrow={settings["หัวข้อย่อยกิจกรรม"]}
+              title={settings["หัวข้อกิจกรรม"]}
             />
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {activities.map(([title, detail, image], index) => (
@@ -571,26 +617,26 @@ export default function VisakhaLandingPage() {
         <section id="contact" className="py-20">
           <div className="section-shell grid gap-8 lg:grid-cols-[1fr_1fr]">
             <div className="rounded-3xl bg-temple-emerald p-8 text-white shadow-temple md:p-10">
-              <SectionHeading light eyebrow="ติดต่อสอบถาม" title="วัดหลวงพ่อสดธรรมกายาราม" description="Wat Luang Pho Sod Dhammakayaram" />
+              <SectionHeading light eyebrow={settings["หัวข้อย่อยติดต่อ"]} title={settings["หัวข้อติดต่อ"]} description={settings["คำอธิบายติดต่อ"]} />
               <div className="mt-8 grid gap-4">
                 <a className="flex items-center gap-3 rounded-2xl bg-white/10 p-4" href={`tel:${settings["โทร"]}`}>
                   <Phone className="h-5 w-5 text-temple-goldSoft" /> {settings["โทร"]}
                 </a>
                 <a className="flex items-center gap-3 rounded-2xl bg-white/10 p-4" href={`https://line.me/R/ti/p/${encodeURIComponent(settings["Line ID"])}`}>
-                  <MessageCircle className="h-5 w-5 text-temple-goldSoft" /> Line OA: {settings["Line ID"]}
+                  <MessageCircle className="h-5 w-5 text-temple-goldSoft" /> {settings["ป้ายLineOA"]}: {settings["Line ID"]}
                 </a>
                 <div className="flex items-center gap-3 rounded-2xl bg-white/10 p-4">
                   <Facebook className="h-5 w-5 text-temple-goldSoft" /> {settings["Facebook"]}
                 </div>
                 {settings["แผนที่"] ? (
                   <a className="flex items-center gap-3 rounded-2xl bg-white/10 p-4" href={settings["แผนที่"]} target="_blank" rel="noreferrer">
-                    <ExternalLink className="h-5 w-5 text-temple-goldSoft" /> เปิดแผนที่
+                    <ExternalLink className="h-5 w-5 text-temple-goldSoft" /> {settings["ปุ่มเปิดแผนที่"]}
                   </a>
                 ) : null}
               </div>
             </div>
             <blockquote className="flex min-h-[360px] flex-col justify-center rounded-3xl border border-temple-goldSoft bg-white p-8 shadow-temple md:p-10">
-              <p className="text-sm font-bold text-temple-gold">พุทธพจน์</p>
+              <p className="text-sm font-bold text-temple-gold">{settings["ป้ายพุทธพจน์"]}</p>
               <p className="mt-4 text-3xl font-bold leading-snug text-temple-emerald md:text-5xl">
                 “{settings["พุทธพจน์"]}”
               </p>
