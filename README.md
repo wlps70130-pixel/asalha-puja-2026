@@ -1,4 +1,6 @@
-# วันอาสาฬหบูชา วัดหลวงพ่อสดธรรมกายาราม
+# asalha-puja-2026
+
+กิจกรรมวันอาสาฬหบูชา ประจำปี 2569 วัดหลวงพ่อสดธรรมกายาราม
 
 React + Tailwind CSS + lucide-react landing page ที่อ่านข้อมูลจาก Google Sheet CSV โดยคง column mapping เดิม
 
