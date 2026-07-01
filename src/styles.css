@@ -46,3 +46,17 @@ img {
 .bottom-safe {
   padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
 }
+
+.donor-table-scroll {
+  max-height: min(70vh, 640px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px) {
+  .donor-table-scroll {
+    max-height: 65vh;
+  }
+}

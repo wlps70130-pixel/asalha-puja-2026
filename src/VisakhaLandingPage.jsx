@@ -452,9 +452,9 @@ export default function VisakhaLandingPage() {
                   </span>
                 </div>
 
-                <div className="mt-5 overflow-hidden rounded-2xl border border-temple-goldSoft bg-white">
-                  <div className="max-h-[520px] overflow-auto">
-                    <table className="min-w-full text-left text-sm">
+                <div className="mt-5 rounded-2xl border border-temple-goldSoft bg-white">
+                  <div className="donor-table-scroll">
+                    <table className="min-w-[720px] text-left text-sm md:min-w-full">
                       <thead className="sticky top-0 bg-temple-emerald text-white">
                         <tr>
                           <th className="px-4 py-3">{settings["หัวตารางลำดับ"]}</th>
