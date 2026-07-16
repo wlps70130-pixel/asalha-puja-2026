@@ -457,10 +457,10 @@ export default function VisakhaLandingPage() {
                     <table className="min-w-[720px] w-max text-left text-sm md:min-w-full md:w-full">
                       <thead className="sticky top-0 bg-temple-emerald text-white">
                         <tr>
-                          <th className="whitespace-nowrap px-4 py-3">{settings["หัวตารางลำดับ"]}</th>
-                          <th className="whitespace-nowrap px-4 py-3">{settings["หัวตารางประเภท"]}</th>
-                          <th className="whitespace-nowrap px-4 py-3">{settings["หัวตารางชื่อคณะ"]}</th>
-                          <th className="whitespace-nowrap px-4 py-3 text-right">{settings["หัวตารางจำนวนทำบุญ"]}</th>
+                          <th className="min-w-[96px] whitespace-nowrap px-4 py-3">{settings["หัวตารางลำดับ"]}</th>
+                          <th className="min-w-[150px] whitespace-nowrap px-4 py-3">{settings["หัวตารางประเภท"]}</th>
+                          <th className="min-w-[420px] whitespace-nowrap px-4 py-3">{settings["หัวตารางชื่อคณะ"]}</th>
+                          <th className="min-w-[160px] whitespace-nowrap px-4 py-3 text-right">{settings["หัวตารางจำนวนทำบุญ"]}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-temple-goldSoft/70">
@@ -474,10 +474,10 @@ export default function VisakhaLandingPage() {
                         ) : filteredDonors.length ? (
                           filteredDonors.map((donor, index) => (
                             <tr key={`${donor.index}-${donor.name}-${index}`} className="hover:bg-temple-cream/55">
-                              <td className="whitespace-nowrap px-4 py-3 font-bold text-temple-gold">{donor.index || index + 1}</td>
-                              <td className="whitespace-nowrap px-4 py-3">{donor.type || "-"}</td>
-                              <td className="whitespace-nowrap px-4 py-3 font-semibold">{donor.name || "-"}</td>
-                              <td className="whitespace-nowrap px-4 py-3 text-right font-bold text-temple-emerald">{moneyText(donor.amount)}</td>
+                              <td className="min-w-[96px] whitespace-nowrap px-4 py-3 font-bold text-temple-gold">{donor.index || index + 1}</td>
+                              <td className="min-w-[150px] whitespace-nowrap px-4 py-3">{donor.type || "-"}</td>
+                              <td className="min-w-[420px] whitespace-nowrap px-4 py-3 font-semibold">{donor.name || "-"}</td>
+                              <td className="min-w-[160px] whitespace-nowrap px-4 py-3 text-right font-bold text-temple-emerald">{moneyText(donor.amount)}</td>
                             </tr>
                           ))
                         ) : (
