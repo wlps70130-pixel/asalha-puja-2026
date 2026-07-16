@@ -454,13 +454,13 @@ export default function VisakhaLandingPage() {
 
                 <div className="mt-5 rounded-2xl border border-temple-goldSoft bg-white">
                   <div className="donor-table-scroll">
-                    <table className="min-w-[720px] text-left text-sm md:min-w-full">
+                    <table className="min-w-[720px] w-max text-left text-sm md:min-w-full md:w-full">
                       <thead className="sticky top-0 bg-temple-emerald text-white">
                         <tr>
-                          <th className="px-4 py-3">{settings["หัวตารางลำดับ"]}</th>
-                          <th className="px-4 py-3">{settings["หัวตารางประเภท"]}</th>
-                          <th className="px-4 py-3">{settings["หัวตารางชื่อคณะ"]}</th>
-                          <th className="px-4 py-3 text-right">{settings["หัวตารางจำนวนทำบุญ"]}</th>
+                          <th className="whitespace-nowrap px-4 py-3">{settings["หัวตารางลำดับ"]}</th>
+                          <th className="whitespace-nowrap px-4 py-3">{settings["หัวตารางประเภท"]}</th>
+                          <th className="whitespace-nowrap px-4 py-3">{settings["หัวตารางชื่อคณะ"]}</th>
+                          <th className="whitespace-nowrap px-4 py-3 text-right">{settings["หัวตารางจำนวนทำบุญ"]}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-temple-goldSoft/70">
@@ -476,7 +476,7 @@ export default function VisakhaLandingPage() {
                             <tr key={`${donor.index}-${donor.name}-${index}`} className="hover:bg-temple-cream/55">
                               <td className="whitespace-nowrap px-4 py-3 font-bold text-temple-gold">{donor.index || index + 1}</td>
                               <td className="whitespace-nowrap px-4 py-3">{donor.type || "-"}</td>
-                              <td className="min-w-[220px] px-4 py-3 font-semibold">{donor.name || "-"}</td>
+                              <td className="whitespace-nowrap px-4 py-3 font-semibold">{donor.name || "-"}</td>
                               <td className="whitespace-nowrap px-4 py-3 text-right font-bold text-temple-emerald">{moneyText(donor.amount)}</td>
                             </tr>
                           ))
